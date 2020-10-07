@@ -1,0 +1,45 @@
+<div class="container">
+  <div *ngIf="errorAddDevice" class="alert alert-danger" role="alert">
+  <strong>Server error!</strong> {{errorAddDevice}}
+  </div>
+  <h4>Add device to {{gateway}}</h4>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+    <div class="form-group">
+      <label for>Uid</label>
+      <input type="number"  min="1" name="uid" id="uid" class="form-control" [formControl]="uid" 
+      [ngClass]="{ 'is-invalid': (uid.hasError('required') || uid.hasError('isNumber')) && uid.touched }" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Uid">
+          <div *ngIf="(uid.hasError('required') || uid.hasError('isNumber')) && uid.touched" class="invalid-feedback">
+        <p *ngIf="uid.errors.required">Uid is require</p>
+        <!-- <p *ngIf="uid.errors.isNumber">Uid most be a number</p> -->
+      </div>
+    </div>
+    <div class="form-group">
+      <label for>Vendor</label>
+      <input type="text" name="vendor" id="vendor" class="form-control" [formControl]="vendor" [ngClass]="{ 'is-invalid': vendor.hasError('required') && vendor.touched }" placeholder="Vendor">
+          <div *ngIf="vendor.hasError('required') && vendor.touched" class="invalid-feedback">
+        <p *ngIf="vendor.errors.required">Vendor is require</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for>Date created</label>
+      <input type="date" name="created_at" id="created_at" class="form-control" [formControl]="created_at" [ngClass]="{ 'is-invalid': created_at.hasError('required') && created_at.touched }">
+          <div *ngIf="created_at.hasError('required') && created_at.touched" class="invalid-feedback">
+        <p *ngIf="created_at.errors.required">Date created is require</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for>Status</label>
+      <select name="status" id="status" class="form-control" [formControl]="status" [ngClass]="{ 'is-invalid': status.hasError('required') && status.touched }">
+        <option value="" disabled>--Select status--</option>
+        <option value=1>Online</option>
+        <option value=0>Offline</option>
+      </select>
+          <div *ngIf="status.hasError('required') && status.touched" class="invalid-feedback">
+        <p *ngIf="status.errors.required">Date created is require</p>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [class.disabled]="!myForm.valid" style="margin-right: 0.4em;">Save device</button>
+  	<a class="btn btn-secondary" [routerLink]="['/']">Cancelar</a>
+  </form>
+</div>

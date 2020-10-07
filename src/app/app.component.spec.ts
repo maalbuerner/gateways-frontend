@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angular-hello-word'`, () => {
+  it(`should have as title 'gateways-frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-hello-word');
+    expect(app.title).toEqual('gateways-frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('angular-hello-word app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('gateways-frontend app is running!');
   });
 });

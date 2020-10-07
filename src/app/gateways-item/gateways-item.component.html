@@ -1,0 +1,31 @@
+<div class="card" id="gateway-card">
+  <!-- <img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap"> -->
+  <div class="card-body">
+  	<div class="gateway-info" (click)="clicked()">
+	    <h4 class="card-title">{{gateway.name}}
+	    	<span *ngIf="selected">&bull;</span></h4>
+	    <p class="card-text">
+		    <small class="gateway-serial">
+		    	<strong>Serial</strong>: {{ gateway.serial }}
+		    </small>
+		    <small class="gateway-address">
+		    	<strong>IP address</strong>: {{ gateway.address }}
+		    </small>
+	    </p>
+    </div>
+    <div *ngIf="selected" class="gateway-devices">
+		<a type="button" class="btn btn-outline-primary" (click)="onAddDevice()">
+			Add_Device
+		</a>
+   		<div id="devices-container">
+    		<strong>Devices:</strong>
+    	 	<div *ngFor="let device of devices; let i=index" id="device-box">
+    	 		<device-box [device]="device" (onRemovedDevice)="handleRemoveDevice($event)" (onSelectedDevice)="handleSelectedDevice($event)"
+				[selected]="device.id === currentDeviceId"
+    	 		></device-box>
+    	 	</div> 
+		</div>
+    </div>
+  </div>
+</div>
+

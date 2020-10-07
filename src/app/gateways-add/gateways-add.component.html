@@ -1,0 +1,36 @@
+<div class="container">
+  <div *ngIf="errorAddGateway" class="alert alert-danger" role="alert">
+  <strong>Server error!</strong> {{errorAddGateway}}
+  </div>
+  <h4>Add gateway</h4>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+    <div class="form-group">
+      <label for>Serial number</label>
+      <input type="text" name="serial" id="serial" class="form-control" [formControl]="serial" 
+      [ngClass]="{ 'is-invalid': serial.hasError('required') && serial.touched }" placeholder="Serial number">
+          <div *ngIf="serial.hasError('required') && serial.touched" class="invalid-feedback">
+        <p *ngIf="serial.errors.required">Serial number is require</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for>Name</label>
+      <input type="text" name="name" id="name" class="form-control" [formControl]="name" [ngClass]="{ 'is-invalid': name.hasError('required') && name.touched }" placeholder="Name">
+          <div *ngIf="name.hasError('required') && name.touched" class="invalid-feedback">
+        <p *ngIf="name.errors.required">Name is require</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for>IPv4 address</label>
+      <input type="text" name="address" id="address" class="form-control" [formControl]="address" [ngClass]="{ 'is-invalid': (address.hasError('isAddress') || address.hasError('isAddress')) && address.touched }" placeholder="Name">
+      <div *ngIf="address.hasError('required') && address.touched" class="invalid-feedback">
+        <p *ngIf="address.errors.required">Address is require</p>
+      </div>
+      <div *ngIf="address.hasError('isAddress') && address.touched" class="invalid-feedback">
+        <p *ngIf="address.errors.isAddress">Address format incorrect.</p>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [class.disabled]="!myForm.valid" style="margin-right: 0.4em;">Save gateway</button>
+  	<a class="btn btn-secondary" [routerLink]="['/']">Cancelar</a>
+  </form>
+</div>

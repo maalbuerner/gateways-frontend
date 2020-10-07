@@ -1,0 +1,13 @@
+<!-- gateways -->
+<div class="flex-row">
+    <gateways-item
+         *ngFor="let gateway of gateways"
+         [gateway]="gateway"
+         [selected]="gateway.serial === currentGatewaySerial"
+         (onGatewaySelected)="handleGatewayClicked($event)">
+    </gateways-item>
+</div>
+<div *ngIf="errMessage">
+	<h1>Server error</h1>
+	<p>{{errMessage}}</p>
+</div>

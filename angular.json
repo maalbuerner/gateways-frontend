@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-hello-word": {
+    "gateways-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-hello-word",
+            "outputPath": "dist/gateways-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,9 +24,13 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.css",              
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -62,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-hello-word:build"
+            "browserTarget": "gateways-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-hello-word:build:production"
+              "browserTarget": "gateways-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-hello-word:build"
+            "browserTarget": "gateways-frontend:build"
           }
         },
         "test": {
@@ -110,15 +114,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-hello-word:serve"
+            "devServerTarget": "gateways-frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-hello-word:serve:production"
+              "devServerTarget": "gateways-frontend:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "angular-hello-word"
+    }
+  },
+  "defaultProject": "gateways-frontend",
+  "cli": {
+    "analytics": false
+  }
 }

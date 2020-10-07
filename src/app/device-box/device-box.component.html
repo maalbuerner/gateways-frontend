@@ -1,0 +1,78 @@
+<button class="btn  item-list-device" [ngClass]="{'btn-secondary': device.status==false, 'btn-success': device.status==true}" data-toggle="modal" data-target="#detail-device-modal" (click)="selectDevice()">
+  {{device.uid}}
+</button>
+<button class="badge badge-danger" (click)="deleteDevice()">
+  X
+</button>
+
+<div *ngIf="selected" class="modal" id="detail-device-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenteredLabel">Device details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+    <form>
+      <div class="form-row">
+        <div class="col">
+          <div class="form-group">
+            <label for>Uid</label>
+            <input type="text" name="uid" value="{{device.uid}}" id="uid" class="form-control" disabled="">
+          </div>
+          <div class="form-group">
+            <label>Vendor</label>
+            <input type="text" value="{{device.vendor}}" name="vendor" id="vendor"  class="form-control" disabled="">
+          </div>
+          <div class="form-group">
+            <label>Date created</label>
+            <input type="date" value="{{device.created_at}}" name="created_at" id="created_at" class="form-control" disabled="">
+          </div>
+          <div class="form-group">
+            <label for="status">Status:</label>
+            <select value={{device.status}} class="form-control" id="status" disabled="">
+              <option value=true>Online</option>
+              <option value=false>Offline</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <form class="form-inline">
+  <label class="sr-only" for="inlineFormInputUid">UID</label>
+  <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputUid" placeholder="UID" value="{{device.uid}}">
+  <label class="sr-only" for="inlineFormInputVendor">Vendor</label>
+  <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputVendor" placeholder="Vendor" value="{{device.vendor}}">
+  <label class="sr-only" for="inlineFormInputCreatedAt">Date created</label>
+  <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputCreatedAt" placeholder="Date created" value="{{device.created_at}}">
+
+  <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+  <div class="input-group mb-2 mr-sm-2">
+    <div class="input-group-prepend">
+      <div class="input-group-text">@</div>
+    </div>
+    <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+  </div>
+
+  <div class="form-check mb-2 mr-sm-2">
+    <input class="form-check-input" type="checkbox" id="inlineFormCheck">
+    <label class="form-check-label" for="inlineFormCheck">
+      Status
+    </label>
+  </div>
+
+  <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form> -->
